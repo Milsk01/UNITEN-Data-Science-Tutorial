@@ -52,45 +52,45 @@ pip install -r requirements.txt
 
 ### Datasets
 
-    1.  Download the datasets from the following links:
-        - [Pima Indians Diabetes Database](https://www.kaggle.com/uciml/pima-indians-diabetes-database)
-    2.  Place the datasets in the `data` folder.
-    3.  Create `dataset.py` file to load the dataset and preprocess it.
-        <details>
-            <summary>Click to view example code</summary>
+1.  Download the datasets from the following links:
+    - [Pima Indians Diabetes Database](https://www.kaggle.com/uciml/pima-indians-diabetes-database)
+2.  Place the datasets in the `data` folder.
+3.  Create `dataset.py` file to load the dataset and preprocess it.
+    <details>
+        <summary>Click to view example code</summary>
 
-                import numpy as np
-                import pandas as pd
-                from sklearn import datasets
+            import numpy as np
+            import pandas as pd
+            from sklearn import datasets
 
-                def read_dataset(path):
-                    df = pd.read_csv(path)
-                    return df
+            def read_dataset(path):
+                df = pd.read_csv(path)
+                return df
 
-                def preprocess(df):
-                    cols = ['Glucose','BloodPressure','SkinThickness','Insulin','BMI','DiabetesPedigreeFunction','Age']
+            def preprocess(df):
+                cols = ['Glucose','BloodPressure','SkinThickness','Insulin','BMI','DiabetesPedigreeFunction','Age']
 
-                    df[cols] = df[cols].replace(0,np.NaN)
-                    df.fillna(df.mean(), inplace = True)
+                df[cols] = df[cols].replace(0,np.NaN)
+                df.fillna(df.mean(), inplace = True)
 
-                    return df
+                return df
 
-                def check_nulls(df):
-                    return df.isnull().sum()
+            def check_nulls(df):
+                return df.isnull().sum()
 
-                def check_zeros(df):
-                    return df.eq(0).sum()
+            def check_zeros(df):
+                return df.eq(0).sum()
 
-                def load_dataset():
-                    df = read_dataset('Data\diabetes.csv')
-                    df = preprocess(df)
-                    return df
+            def load_dataset():
+                df = read_dataset('Data\diabetes.csv')
+                df = preprocess(df)
+                return df
 
-                if __name__ == '__main__':
-                    df = load_dataset()
-                    print(df.head())
+            if __name__ == '__main__':
+                df = load_dataset()
+                print(df.head())
 
-        </details>
+    </details>
 
 ## Training
 
