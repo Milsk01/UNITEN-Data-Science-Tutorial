@@ -3,7 +3,7 @@ import json
 import requests
 
 # Title
-st.header("Diabetes Prediction App")
+st.header("Diabetes Prediction Demo")
 
 # Input bar 1
 Glucose = st.number_input("Enter Glucose", format = "%d" , value = 65)
