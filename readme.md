@@ -296,28 +296,28 @@ conn.close()
 
         import streamlit as st
 
-    st.set_page_config(
-    page_title="Diabetes Prediction App",
-    page_icon=":hospital:",
-    initial_sidebar_state="expanded",
+        st.set_page_config(
+        page_title="Diabetes Prediction App",
+        page_icon=":hospital:",
+        initial_sidebar_state="expanded",
 
-    )
+        )
 
-    st.write("# Diabetes Prediction App! 👋")
+        st.write("# Diabetes Prediction App! 👋")
 
-    st.markdown(
-    """
-    This app predicts the probability of a person having diabetes using the Pima Indians Diabetes Dataset!
-    The algorithm used is **K-Nearest Neighbors** with **K = 19**. Given inputs of Glucose, BMI, and Age, the model predicts whether the person is diabetic or not.
+        st.markdown(
+        """
+        This app predicts the probability of a person having diabetes using the Pima Indians Diabetes Dataset!
+        The algorithm used is **K-Nearest Neighbors** with **K = 19**. Given inputs of Glucose, BMI, and Age, the model predicts whether the person is diabetic or not.
 
-        ### Documentation and references
-        - Dataset source: [Kaggle](https://www.kaggle.com/uciml/pima-indians-diabetes-database)
-        - Strealit [documentation](https://docs.streamlit.io/en/stable/)
-        - Flask [documentation](https://flask.palletsprojects.com/en/1.1.x/)
-        - Ask a question in our [community
+            ### Documentation and references
+            - Dataset source: [Kaggle](https://www.kaggle.com/uciml/pima-indians-diabetes-database)
+            - Strealit [documentation](https://docs.streamlit.io/en/stable/)
+            - Flask [documentation](https://flask.palletsprojects.com/en/1.1.x/)
+            - Ask a question in our [community
 
-    """
-    )
+        """
+        )
 
     </details>
 
@@ -325,7 +325,8 @@ conn.close()
 4.  Create a new file called Predictor.py
     <details>
     <summary>Code</summary>
-        import streamlit as st 
+
+        import streamlit as st
         import json
         import requests
 
@@ -408,7 +409,7 @@ conn.close()
    ```
    python server.app.py
    ```
-2. Run the client using the following command
+2. Open a new command prompt window and run the client using the following command
    ```
    streamlit run client/home.py
    ```
