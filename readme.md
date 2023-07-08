@@ -35,12 +35,12 @@ Final File structure
 
 ### Dependencies
 
-    - Python 3.11
-    - Flask
-    - Streamlit
-    - Scikit-learn
-    - Pandas
-    - Numpy
+- Python 3.11
+- Flask
+- Streamlit
+- Scikit-learn
+- Pandas
+- Numpy
 
 ### Installation
 
@@ -94,25 +94,25 @@ pip install -r requirements.txt
 
 ## Training
 
-    1. Make sure the scikit-learn library is installed: pip install scikit-learn
-    2. Place the dataset.py file in the same directory as this script.
-    3. Run `train.py` script.The script will load the dataset, train a KNN classifier with 19 neighbors on the features
+1. Make sure the scikit-learn library is installed: pip install scikit-learn
+2. Place the dataset.py file in the same directory as this script.
+3. Run `train.py` script.The script will load the dataset, train a KNN classifier with 19 neighbors on the features
 
-    ```cmd
-    python train.py
-    ```
+```cmd
+python train.py
+```
 
-    4. The model will be saved to the output directory.
+4. The model will be saved to the output directory.
 
 ## Deployment
 
-    Next, we will deploy the model using Flask and Streamlit. Flask is a web framework that allows us to deploy our machine learning model as a REST API. Streamlit is a library that allows us to create web applications for machine learning and data science. Before starting, make sure you have the following libraries installed:
+Next, we will deploy the model using Flask and Streamlit. Flask is a web framework that allows us to deploy our machine learning model as a REST API. Streamlit is a library that allows us to create web applications for machine learning and data science. Before starting, make sure you have the following libraries installed:
 
-    - Flask
-    - Streamlit
-    - sqlite3
+- Flask
+- Streamlit
+- sqlite3
 
-    Note that we will be using sqlite3 as our database. It is recommended to use a more robust database such as MySQL or PostgreSQL for production.
+Note that we will be using sqlite3 as our database. It is recommended to use a more robust database such as MySQL or PostgreSQL for production.
 
 ### Creating Database
 
