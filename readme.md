@@ -2,16 +2,17 @@
 
 ## Introduction
 
-    This is a data science project from UNITEN that aims to predict whether a person has diabetes or not. The project is divided into 3 parts:
+This is a data science project from UNITEN that aims to predict whether a person has diabetes or not. The project is divided into 3 parts:
 
-    - Exploratory Data Analysis
-    - Model Training
-    - Deployment
+- Exploratory Data Analysis
+- Model Training
+- Deployment
 
 ## Getting Started
 
-    Final File structure
-    ```
+Final File structure
+
+```
     ├───data
     │ └───diabetes.csv
     ├───client
@@ -30,8 +31,7 @@
     ├───requirements.txt
     ├───test.db
     └───train.py
-
-    ````
+```
 
 ### Dependencies
 
@@ -289,119 +289,119 @@ conn.close()
 
 ### Streamlit Client
 
-    1.  Create a new folder called client.
-    2.  Create a new file called home.py in the client folder.It is the home page of the web application.
-            <details>
-            <summary>Code</summary>
+1.  Create a new folder called client.
+2.  Create a new file called home.py in the client folder.It is the home page of the web application.
+    <details>
+    <summary>Code</summary>
 
-                import streamlit as st
+            import streamlit as st
 
-                st.set_page_config(
-                page_title="Diabetes Prediction App",
-                page_icon=":hospital:",
-                initial_sidebar_state="expanded",
+            st.set_page_config(
+            page_title="Diabetes Prediction App",
+            page_icon=":hospital:",
+            initial_sidebar_state="expanded",
 
-                )
+            )
 
-                st.write("# Diabetes Prediction App! 👋")
+            st.write("# Diabetes Prediction App! 👋")
 
-                st.markdown(
-                """
-                This app predicts the probability of a person having diabetes using the Pima Indians Diabetes Dataset!
-                The algorithm used is **K-Nearest Neighbors** with **K = 19**. Given inputs of Glucose, BMI, and Age, the model predicts whether the person is diabetic or not.
+            st.markdown(
+            """
+            This app predicts the probability of a person having diabetes using the Pima Indians Diabetes Dataset!
+            The algorithm used is **K-Nearest Neighbors** with **K = 19**. Given inputs of Glucose, BMI, and Age, the model predicts whether the person is diabetic or not.
 
-                    ### Documentation and references
-                    - Dataset source: [Kaggle](https://www.kaggle.com/uciml/pima-indians-diabetes-database)
-                    - Strealit [documentation](https://docs.streamlit.io/en/stable/)
-                    - Flask [documentation](https://flask.palletsprojects.com/en/1.1.x/)
-                    - Ask a question in our [community
+                ### Documentation and references
+                - Dataset source: [Kaggle](https://www.kaggle.com/uciml/pima-indians-diabetes-database)
+                - Strealit [documentation](https://docs.streamlit.io/en/stable/)
+                - Flask [documentation](https://flask.palletsprojects.com/en/1.1.x/)
+                - Ask a question in our [community
 
-                """
-                )
+            """
+            )
 
-            </details>
+        </details>
 
-    3.  Create a subfolder called pages in the client folder.
-    4.  Create a new file called Predictor.py
-            <details>
-            <summary>Code</summary>
+3.  Create a subfolder called pages in the client folder.
+4.  Create a new file called Predictor.py
+    <details>
+    <summary>Code</summary>
 
-                import streamlit as st
-                import json
-                import requests
+            import streamlit as st
+            import json
+            import requests
 
-                # Title
-                st.header("Diabetes Prediction Demo")
+            # Title
+            st.header("Diabetes Prediction Demo")
 
-                # Input bar 1
-                Glucose = st.number_input("Enter Glucose", format = "%d" , value = 65)
+            # Input bar 1
+            Glucose = st.number_input("Enter Glucose", format = "%d" , value = 65)
 
-                # Input bar 2
-                BMI = st.number_input("Enter BMI",format = "%.2f", value = 21.0)
+            # Input bar 2
+            BMI = st.number_input("Enter BMI",format = "%.2f", value = 21.0)
 
-                #  Input bar 3
-                Age = st.number_input("Enter Age", format = "%d", value = 21)
+            #  Input bar 3
+            Age = st.number_input("Enter Age", format = "%d", value = 21)
 
-                # If button is pressed
-                if st.button("Submit"):
-                    url = 'http://127.0.0.1:5000/diabetes/v1/predict'
-                    data = {"BMI":BMI, "Age":Age, "Glucose":Glucose}
-                    data_json = json.dumps(data)
-                    headers = {'Content-type':'application/json'}
-                    response = requests.post(url, data=data_json, headers=headers)
-                    predictions = json.loads(response.text)
+            # If button is pressed
+            if st.button("Submit"):
+                url = 'http://127.0.0.1:5000/diabetes/v1/predict'
+                data = {"BMI":BMI, "Age":Age, "Glucose":Glucose}
+                data_json = json.dumps(data)
+                headers = {'Content-type':'application/json'}
+                response = requests.post(url, data=data_json, headers=headers)
+                predictions = json.loads(response.text)
 
-                    # Output prediction
-                    st.text("Diabetic" if predictions["prediction"] == 1 else "Not Diabetic")
-                    st.text("Confidence: " + predictions["confidence"] + "%")
+                # Output prediction
+                st.text("Diabetic" if predictions["prediction"] == 1 else "Not Diabetic")
+                st.text("Confidence: " + predictions["confidence"] + "%")
 
-            </details>
+        </details>
 
-    5.  Create a new file called Results.py
-            <details>
-            <summary>Code</summary>
+5.  Create a new file called Results.py
+    <details>
+    <summary>Code</summary>
 
-                import streamlit as st
-                import pandas as pd
-                import json
-                import requests
+            import streamlit as st
+            import pandas as pd
+            import json
+            import requests
 
-                st.set_page_config(page_title="Results", page_icon="📊")
+            st.set_page_config(page_title="Results", page_icon="📊")
 
-                st.markdown("# Display results")
+            st.markdown("# Display results")
 
-                st.write("Displaying list of past predictions made by the model")
+            st.write("Displaying list of past predictions made by the model")
 
-                def get_data():
-                    url = "http://127.0.0.1:5000/diabetes/v1/results"
-                    headers = {'Content-type':'application/json'}
+            def get_data():
+                url = "http://127.0.0.1:5000/diabetes/v1/results"
+                headers = {'Content-type':'application/json'}
 
-                    response = requests.get(url, headers=headers)
-                    predictions = json.loads(response.text)
+                response = requests.get(url, headers=headers)
+                predictions = json.loads(response.text)
 
-                    ## Display error message if no predictions have been made
-                    print(len(predictions))
-                    if len(predictions) == 0:
-                        return "No predictions have been made yet!"
+                ## Display error message if no predictions have been made
+                print(len(predictions))
+                if len(predictions) == 0:
+                    return "No predictions have been made yet!"
 
-                    df = pd.DataFrame(predictions)
+                df = pd.DataFrame(predictions)
 
-                    ## add columns to df
-                    df.columns = ["ID","Glucose", "BMI", "Age", "Prediction", "Confidence", "Timestamp"]
-                    df["Prediction"] = df["Prediction"].apply(lambda x: "Diabetic" if x == 1 else "Not Diabetic")
-                    df.set_index("ID", inplace=True)
+                ## add columns to df
+                df.columns = ["ID","Glucose", "BMI", "Age", "Prediction", "Confidence", "Timestamp"]
+                df["Prediction"] = df["Prediction"].apply(lambda x: "Diabetic" if x == 1 else "Not Diabetic")
+                df.set_index("ID", inplace=True)
 
-                    return df
+                return df
 
 
-                data = get_data()
+            data = get_data()
 
-                if isinstance(data, str):
-                    st.write(data)
-                else:
-                    st.write("###", data.sort_index())
+            if isinstance(data, str):
+                st.write(data)
+            else:
+                st.write("###", data.sort_index())
 
-            </details>
+        </details>
 
 ## Run the application
 
